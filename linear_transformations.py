@@ -28,8 +28,20 @@ def crear_matriz(filas, columnas):
     print (matriz)
     for i in range (filas):
         for j in range (columnas):
-            valor = float(input(f"Ingrese valor en (i{i},j{j}): "))
-            matriz[i][j] = valor
+            
+            while True:
+                try:
+                    valor = float(input(f"Ingrese valor en (i{i},j{j}): "))
+                    
+                    if valor >= 0:
+                        matriz[i][j] = valor
+                        break
+                    
+                    else:
+                        print("El valor debe ser mayor o igual a 0")
+                    
+                except ValueError:
+                    print("Entrada no valida")
     print(matriz)
     return matriz        
     
@@ -38,10 +50,22 @@ def transformacion(matriz_figura):
     print("\n")
     print("\n\t CREACION DE MATRIZ DE TRANSFORMACION")
     print(matriz_transformacion)
+    
     for i in range (2):
         for j in range (2):
-            valor = float(input(f"Ingrese valor en (i{i},j{j}): "))
-            matriz_transformacion[i][j] = valor
+            while True:
+                try:
+                    valor = float(input(f"Ingrese valor en (i{i},j{j}): "))
+                    
+                    if valor >= 0:
+                        matriz_transformacion[i][j] = valor
+                        break
+                    
+                    else:
+                        print("El valor debe ser mayor o igual a 0")
+                        
+                except ValueError:
+                    print("Entrada no valida")
     matriz_resultante = matriz_transformacion @ matriz_figura 
     print(matriz_resultante)
     return matriz_resultante
