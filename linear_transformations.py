@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as ptl
+import matplotlib.pyplot as plt
 def tamaño_matriz():
     
     tamaño_matriz = []
@@ -32,16 +32,11 @@ def crear_matriz(filas, columnas):
             while True:
                 try:
                     valor = float(input(f"Ingrese valor en (i{i},j{j}): "))
-                    
-                    if valor >= 0:
-                        matriz[i][j] = valor
-                        break
-                    
-                    else:
-                        print("El valor debe ser mayor o igual a 0")
-                    
+                    matriz[i][j] = valor
+                    break
                 except ValueError:
                     print("Entrada no valida")
+                    
     print(matriz)
     return matriz        
     
@@ -53,38 +48,34 @@ def transformacion(matriz_figura):
     
     for i in range (2):
         for j in range (2):
+            
             while True:
                 try:
                     valor = float(input(f"Ingrese valor en (i{i},j{j}): "))
-                    
-                    if valor >= 0:
-                        matriz_transformacion[i][j] = valor
-                        break
-                    
-                    else:
-                        print("El valor debe ser mayor o igual a 0")
-                        
+                    matriz_transformacion[i][j] = valor
+                    break
                 except ValueError:
                     print("Entrada no valida")
+                    
     matriz_resultante = matriz_transformacion @ matriz_figura 
     print(matriz_resultante)
     return matriz_resultante
     
 
 def graficar(matriz, titulo):
-    ptl.figure() 
+    plt.figure() 
     # matriz[0, :] este seria todo el eje x
     # matriz[1, :] este otro todo el eje y
     print("\nMostrando figura original...")
-    ptl.plot(matriz[0, :] , matriz[1, :],  marker = 'o', linestyle="-", color = 'r')
+    plt.plot(matriz[0, :] , matriz[1, :],  marker = 'o', linestyle="-", color = 'r')
     # matriz con los dos ultimos ejes para cerrar figura
-    ptl.plot((matriz[0, 0], matriz[0, -1]), (matriz[1, 0], matriz[1, -1]), marker = 'o', linestyle="-", color = 'r')
+    plt.plot((matriz[0, 0], matriz[0, -1]), (matriz[1, 0], matriz[1, -1]), marker = 'o', linestyle="-", color = 'r')
     
-    ptl.title(f"GRAFICO {titulo}")
-    ptl.xlabel("Eje X")
-    ptl.ylabel("Eje y")
-    ptl.grid(True)
-    ptl.show()
+    plt.title(f"GRAFICO {titulo}")
+    plt.xlabel("Eje X")
+    plt.ylabel("Eje y")
+    plt.grid(True)
+    plt.show()
         
 i,j = tamaño_matriz()      
 matriz = crear_matriz(i, j) 
