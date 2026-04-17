@@ -1,21 +1,12 @@
 import numpy as np
-import pandas as pd
-
+import matplotlib.pyplot as ptl
 def tamaño_matriz():
     
     tamaño_matriz = []
+    tamaño_matriz_i = 2 #SIEMPRE pero siempre es 2 porq asi seran las filas , por los pares ordenados (x,y) 
+                        #(1 0)                                                                               
+                        #(0 1) esto serian los puntos (1,0) y (0,1) por eso no pueden existir mas filas.     
 
-    while True:
-        try: 
-            tamaño_matriz_i = int(input(f"Ingrese el tamaño de la matriz | FILA | i:"))  
-            if tamaño_matriz_i >= 0:
-                print(f"Numera de filas {tamaño_matriz_i}")
-                break
-            else:
-                print("EL numero de filas debe ser mayor o igual a 0")       
-        except ValueError:
-            print("Entrada no valida")
-        
     while True:
         try: 
             tamaño_matriz_j = int(input(f"Ingrese el tamaño de la matriz | COLUMNA | j:"))  
@@ -53,8 +44,26 @@ def transformacion(matriz_figura):
             matriz_transformacion[i][j] = valor
     matriz_resultante = matriz_transformacion @ matriz_figura 
     print(matriz_resultante)
+    return matriz_resultante
     
 
+def graficar(matriz, titulo):
+    ptl.figure() 
+    # matriz[0, :] este seria todo el eje x
+    # matriz[1, :] este otro todo el eje y
+    print("\nMostrando figura original...")
+    ptl.plot(matriz[0, :] , matriz[1, :],  marker = 'o', linestyle="-", color = 'r')
+    # matriz con los dos ultimos ejes para cerrar figura
+    ptl.plot((matriz[0, 0], matriz[0, -1]), (matriz[1, 0], matriz[1, -1]), marker = 'o', linestyle="-", color = 'r')
+    
+    ptl.title(f"GRAFICO {titulo}")
+    ptl.xlabel("Eje X")
+    ptl.ylabel("Eje y")
+    ptl.grid(True)
+    ptl.show()
+        
 i,j = tamaño_matriz()      
 matriz = crear_matriz(i, j) 
-transformacion(matriz)
+graficar(matriz, "ORIGINAL")
+matriz_resultante = transformacion(matriz)
+graficar(matriz_resultante, "TRANSFORMADO")
